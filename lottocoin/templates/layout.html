@@ -148,6 +148,13 @@
             <span>Buy lottocoin</span></a
           >
         </li>
+
+        <li class="nav-item">
+          <a class="nav-link" href="{{ url_for('lottery') }}">
+            <i class="fas fa-store"></i>
+            <span>Lottery</span></a
+          >
+        </li>
         {% if current_user.is_authenticated %}
         <li class="nav-item">
           <a class="nav-link" href="{{ url_for('account') }}">

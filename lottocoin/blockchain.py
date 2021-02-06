@@ -10,16 +10,21 @@ from Crypto.Signature import *
 from time import time
 from datetime import datetime
 import requests
+from lottocoin.username import username
+import random
 
 
 class Blockchain (object):
 	def __init__(self):
 		self.chain = [self.addGenesisBlock()];
 		self.pendingTransactions = [];
-		self.difficulty = 2;
-		self.minerRewards = 50;
+		self.difficulty = 3;
 		self.blockSize = 10;
 		self.nodes = set();
+		self.pool = 0;
+		self.tickets = [];
+		self.winners = [["", 0]];
+		self.lotteryblocks = [];
 
 	def register_node(self, address):
 		parsedUrl = urlparse(address)
@@ -71,10 +76,12 @@ class Blockchain (object):
 				newBlock.prev = hashVal;
 				newBlock.mineBlock(self.difficulty);
 				self.chain.append(newBlock);
+			self.lotteryblocks.append(newBlock);
 			print("Mining Transactions Success!");
-
-			payMiner = Transaction("Miner Rewards", miner, self.minerRewards);
-			self.pendingTransactions = [payMiner];
+			self.lottery();
+			print(self.lotteryblocks);
+			self.tickets.append(username());
+			self.pendingTransactions = [];
 		return True;
 
 	def addTransaction(self, sender, reciever, amt, keyString, senderKey):
@@ -194,7 +201,7 @@ class Blockchain (object):
 
 			chain.append(block);
 		return chain;
-		
+
 	def getBalance(self, person):
 		balance = 0; 
 		for i in range(1, len(self.chain)):
@@ -208,7 +215,48 @@ class Blockchain (object):
 						balance += transaction.amt;
 			except AttributeError:
 				print("no transaction")
+		for x in range(len(self.winners)):
+			winners = self.winners[x];
+			try:
+				print(winners)
+				if (winners[0] == person):
+					balance += winners[1]
+			except AttributeError:
+				print("no transaction")
 		return balance + 100;
+
+	def getTickets(self, person):
+		tickets = 0;
+		for i in range(len(self.lotteryblocks)):
+			block = self.lotteryblocks[i];
+			try:
+				if (block.miner == person):
+					tickets += 1
+			except AttributeError:
+				print("error")
+		print(tickets)
+		print(self.tickets)
+		return tickets;
+
+	def getPool(self):
+		pool = 0
+		for i in range(len(self.lotteryblocks)):
+			block = self.lotteryblocks[i];
+			try:
+				pool += 10
+			except AttributeError:
+				print("no transaction")
+		print(pool)
+		return pool;
+
+	def lottery(self):
+		print("lottery triggered");
+		if len(self.lotteryblocks) > 1:
+			print("lottery succesful");
+			winner = random.choice(self.tickets);
+			self.winners.append([winner, self.getPool()])
+			self.lotteryblocks = [];
+			print(self.winners)
 
 
 class Block (object):
@@ -220,6 +268,7 @@ class Block (object):
 		self.nonse = 0;
 		self.gym = self.calculateGym();
 		self.hash = self.calculateHash();
+		self.miner = "";
 
 	def calculateGym(self):
 		return "24 hr";
@@ -249,6 +298,8 @@ class Block (object):
 			#print(len(hashPuzzle));
 			#print(self.hash[0:difficulty]);
 		print("Block Mined!");
+		print(username());
+		self.miner = username();
 		return True;
 
 	def hasValidTransactions(self):

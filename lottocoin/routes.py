@@ -109,7 +109,7 @@ def mine():
     else:
         feedback = blockchainObj.minePendingTransactions(miner);
         if feedback:
-            flash(f'Block Mined! Your mining reward has now been added to the pending transactions!', 'success');
+            flash(f'Block Mined! Your mining reward has now been added to your account!', 'success');
         else:
             flash(f'Error!', 'danger');
     return render_template('minerPage.html', title = "Mine", blockchain = blockchainObj);
@@ -170,5 +170,9 @@ def consensus():
         }
 
     return jsonify(response), 200
+
+@app.route('/lottery')
+def lottery():
+    return render_template('lottery.html', title='Lottery', blockchain = blockchainObj)
 
 

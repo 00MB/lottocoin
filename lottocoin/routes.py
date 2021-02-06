@@ -9,14 +9,8 @@ import requests
 #FLASK ROUTES 
 @app.route("/")
 @app.route("/home")
-def home():
-    blockchainObj.resolveConflicts();
-    return render_template('blockchain.html', title = "Blockchain", blockchain = blockchainObj);
-
-
 @app.route("/blockchain")
-def blockchain():
-    #print(type(blockchainObj.chain));
+def home():
     blockchainObj.resolveConflicts();
     return render_template('blockchain.html', title = "Blockchain", blockchain = blockchainObj);
 
@@ -52,7 +46,20 @@ def node():
 
 @app.route("/purchase")
 def purchase():
-    return render_template('purchase.html', title = "Purchase");
+    form = TransactionForm();
+    formNL = TransactionFormNotLoggedIn();
+    #print(form.sender.data, form.reciever.data, form.amount.data, form.key.data);
+    #print("hi");
+    if form.validate_on_submit():
+        print("hi");
+        #print(form.sender.data, form.reciever.data, form.amount.data, form.key.data);
+        #print(type(form.key.data));
+        feedback = blockchainObj.addTransaction("Lottocoin", username(), form.amount.data, form.key.data, form.key.data);
+        if feedback:
+            flash(f'Transaction Made!', 'success');
+        else:
+            flash(f'Error!', 'danger');
+        return render_template('transaction.html', title = "Transaction", blockchain = blockchainObj, form=form, formNL= formNL); 
 
 @app.route("/register", methods=['GET', 'POST'])
 def register():

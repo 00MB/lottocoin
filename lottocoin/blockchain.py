@@ -258,6 +258,14 @@ class Blockchain (object):
 			self.lotteryblocks = [];
 			print(self.winners)
 
+	def getlotteryblocks(self):
+		return self.lotteryblocks;
+
+	def getrecentwinner(self):
+		print(f"recent winner: {self.winners[-1][1]} - {self.winners[-1][0]}")
+		if self.winners[-1][0] == "":
+			return "None"
+		return (f"{self.winners[-1][0]} - {self.winners[-1][1]}")
 
 class Block (object):
 	def __init__(self, transactions, time, index):

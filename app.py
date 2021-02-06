@@ -1,4 +1,4 @@
-from gymcoin import app
+from lottocoin import app
 
 
 

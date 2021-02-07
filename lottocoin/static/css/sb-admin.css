@@ -7377,7 +7377,7 @@ button.bg-light:focus {
 }
 
 .bg-dark {
-  background-color: lightgray !important;
+  background-color: #090c14 !important;
 }
 
 a.bg-dark:hover,
@@ -11074,7 +11074,7 @@ body {
 
 .sidebar {
   width: 90px !important;
-  background-color: orange;
+  background-color: #f09a18;
   min-height: calc(100vh - 56px);
 }
 
@@ -11111,7 +11111,7 @@ body {
 }
 
 .sidebar .nav-item .nav-link {
-  color: rgba(255, 255, 255, 0.5);
+  color: white;
 }
 
 .sidebar .nav-item .nav-link:active,

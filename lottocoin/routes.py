@@ -9,7 +9,7 @@ from expiringdict import ExpiringDict
 import requests
 
 #FLASK ROUTES 
-current_sessions = ExpiringDict(max_len=500, max_age_seconds=60)
+current_sessions = ExpiringDict(max_len=500, max_age_seconds=500)
 
 @app.route("/")
 @app.route("/home")

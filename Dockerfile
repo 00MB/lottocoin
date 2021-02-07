@@ -4,8 +4,8 @@ WORKDIR lottocoin
 
 EXPOSE 5000
 
-RUN pip install flask pycryptodome jsonpickle flask_sqlalchemy requests flask_bcrypt flask_login flask_wtf email_validator gunicorn
+RUN pip install flask pycryptodome jsonpickle flask_sqlalchemy requests flask_bcrypt flask_login flask_wtf email_validator expiringdict
 
 COPY . .
 
-CMD ["gunicorn", "lottocoin:app", "-b", "0.0.0.0:5000", "-w", "6"]
+CMD ["flask", "run", "--host=0.0.0.0"]

@@ -31,7 +31,7 @@
       class="form-control"
       id="exampleInputEmail1"
       aria-describedby="emailHelp"
-      value="{{ ((blockchain.getTickets( current_user.username ))/(blockchain.getPool()))*1000 }}"
+      value="{{ ((blockchain.getTickets( current_user.username ))/(blockchain.getPool()))*500 }}"
       disabled="True"
     />
     {% else%}
@@ -52,7 +52,7 @@
       class="form-control"
       id="exampleInputEmail1"
       aria-describedby="emailHelp"
-      value="{{ 2- (blockchain.getlotteryblocks())|length }}"
+      value="{{ 10 - (blockchain.getlotteryblocks())|length }}"
       disabled="True"
     />
   </div>

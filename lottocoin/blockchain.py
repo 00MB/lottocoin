@@ -131,8 +131,6 @@ class Blockchain (object):
 			if b2.hash != b2.calculateHash():
 				print("error 4");
 				return False;
-
-
 			if b2.prev != b1.hash:
 				console.log("error 5");
 				return False;
@@ -243,7 +241,7 @@ class Blockchain (object):
 		for i in range(len(self.lotteryblocks)):
 			block = self.lotteryblocks[i];
 			try:
-				pool += 10
+				pool += 5
 			except AttributeError:
 				print("no transaction")
 		print(pool)
@@ -251,7 +249,7 @@ class Blockchain (object):
 
 	def lottery(self):
 		print("lottery triggered");
-		if len(self.lotteryblocks) > 1:
+		if len(self.lotteryblocks) > 9:
 			print("lottery succesful");
 			winner = random.choice(self.tickets);
 			self.winners.append([winner, self.getPool()])

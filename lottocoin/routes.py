@@ -40,10 +40,6 @@ def transaction():
 def minerPage():
 	return render_template('minerPage.html', title = "Mine", blockchain = blockchainObj);
 
-@app.route("/node")
-def node():
-	return render_template('node.html', title = "Node");
-
 @app.route("/purchase", methods=['GET', 'POST'])
 def purchase():
     form = TransactionForm();
@@ -59,7 +55,7 @@ def purchase():
             flash(f'Transaction Made!', 'success');
         else:
             flash(f'Error!', 'danger');
-        return render_template('purchase.html', title = "Purchase", blockchain = blockchainObj, form=form, formNL= formNL);  
+    return render_template('purchase.html', title = "Purchase", blockchain = blockchainObj, form=form, formNL= formNL);  
 
 @app.route("/register", methods=['GET', 'POST'])
 def register():

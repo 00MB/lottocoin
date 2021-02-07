@@ -123,7 +123,7 @@ def mine():
     else:
         feedback = blockchainObj.minePendingTransactions(miner);
         if feedback:
-            flash(f'Block Mined! Your mining reward has now been added to your account!', 'success');
+            flash(f'Block Mined! You have a ticket for the lottery now!', 'success');
         else:
             flash(f'Error!', 'danger');
     return render_template('minerPage.html', title = "Mine", blockchain = blockchainObj);

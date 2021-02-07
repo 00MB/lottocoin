@@ -44,7 +44,7 @@ def minerPage():
 def node():
 	return render_template('node.html', title = "Node");
 
-@app.route("/purchase")
+@app.route("/purchase", methods=['GET', 'POST'])
 def purchase():
     form = TransactionForm();
     formNL = TransactionFormNotLoggedIn();
@@ -54,12 +54,12 @@ def purchase():
         print("hi");
         #print(form.sender.data, form.reciever.data, form.amount.data, form.key.data);
         #print(type(form.key.data));
-        feedback = blockchainObj.addTransaction("Lottocoin", username(), form.amount.data, form.key.data, form.key.data);
+        feedback = blockchainObj.addTransaction(form.sender.data, form.reciever.data, form.amount.data, form.key.data, form.key.data);
         if feedback:
             flash(f'Transaction Made!', 'success');
         else:
             flash(f'Error!', 'danger');
-        return render_template('transaction.html', title = "Transaction", blockchain = blockchainObj, form=form, formNL= formNL); 
+        return render_template('purchase.html', title = "Purchase", blockchain = blockchainObj, form=form, formNL= formNL);  
 
 @app.route("/register", methods=['GET', 'POST'])
 def register():

@@ -5,8 +5,11 @@ from lottocoin import app, db, bcrypt
 from lottocoin import blockchainObj
 from flask_login import login_user, current_user, logout_user, login_required
 from Crypto.PublicKey import RSA
+from expiringdict import ExpiringDict
 import requests
 #FLASK ROUTES 
+current_sessions = ExpiringDict(max_len=500, max_age_seconds=60)
+
 @app.route("/")
 @app.route("/home")
 @app.route("/blockchain")
@@ -82,6 +85,9 @@ def login():
             login_user(user, remember=form.remember.data);
             nextPage = request.args.get('next');
             flash(f'Welcome! You are now logged in', 'success');
+            global current_sessions
+            current_sessions[user.username] = current_user
+            print(current_sessions)
             return redirect(nextPage) if nextPage else redirect(url_for('home'));
         else:
             flash('Login Unsuccessful. Please check email and password', 'danger');
@@ -90,6 +96,8 @@ def login():
 
 @app.route("/logout")
 def logout():
+    global current_sessions
+    current_sessions.pop(current_user.get_id())
     logout_user();
     return redirect(url_for('home'));
 
@@ -178,4 +186,11 @@ def consensus():
 def lottery():
     return render_template('lottery.html', title='Lottery', blockchain = blockchainObj)
 
-
+@app.route('/users')
+def users():
+    all_usernames = []
+    all_users = User.query.all()
+    for x in range(len(all_users)):
+        all_usernames.append(all_users[x].username) 
+    print(all_usernames)
+    return render_template('users.html', users=current_sessions, allusers=all_usernames)

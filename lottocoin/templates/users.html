@@ -1,0 +1,9 @@
+{% extends "layout.html" %} {% block content %}
+
+<h1>Online Users</h1>
+
+{% for i in allusers %} {% if i in users %}
+<li style="color: green">{{i}}</li>
+{% else %}
+<li style="color: red">{{i}}</li>
+{% endif %} {% endfor %} {% endblock content %}

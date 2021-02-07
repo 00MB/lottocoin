@@ -7,6 +7,7 @@ from flask_login import login_user, current_user, logout_user, login_required
 from Crypto.PublicKey import RSA
 from expiringdict import ExpiringDict
 import requests
+
 #FLASK ROUTES 
 current_sessions = ExpiringDict(max_len=500, max_age_seconds=60)
 
@@ -27,6 +28,8 @@ def transaction():
         print("hi");
         #print(form.sender.data, form.reciever.data, form.amount.data, form.key.data);
         #print(type(form.key.data));
+        if form.amount.data > blockchainObj.getBalance(form.sender.data):
+            return render_template('error.html', title = "Error", error="You do not have enough coins to make this transaction.")
         feedback = blockchainObj.addTransaction(form.sender.data, form.reciever.data, form.amount.data, form.key.data, form.key.data);
         if feedback:
             flash(f'Transaction Made!', 'success');

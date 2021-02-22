@@ -1,6 +1,8 @@
-http://lottocoin.online/, http://52.146.37.188/
-CONTRIBUTORS: Angler#5664 arnold#1095 avinashupadhyaya#4664 Michael Beer#7583
-For intstructions view bottom of README
+# lottocoin   
+
+http://lottocoin.online/   For setup view bottom of README
+
+![image](https://challengepost-s3-challengepost.netdna-ssl.com/photos/production/software_photos/001/410/418/datas/original.png)
 
 ## Inspiration
 There is a **massive problem** in the cryptocurrency market that can totally destroy these coins and crash the markets, this problem is called the 51% attack. The 51% attack is when one entity or organisation has over 50% control of the hash rate (mining). If this happens then the **entity has total control** and can **alter the blockchain for extreme financial gain**. One way to prevent this is by deterring entities and organisations and increasing the amount of smaller miners with a lottery type mining system. The current mining system used rewards a certain amount of crypto every time a block is created. Our proposal is to **instead reward the miner with a ticket**, and the prize for mining gets added to a pool. Every X blocks mined a lottery takes place and whoever wins takes the whole pool, then the pool resets. Our thought is that large groups and companies do not try to buy extreme amounts of lottery tickets due to the **risk factor**, so this **risk factor would deter them from spending lots of money on computational power** and instead **favour smaller miners using their phones, laptops** etc as it is a lower risk for them. We create a web app and a **decentralized peer to peer network** for this crypto where a user can create an account, buy crypto and transfer it to other users. They also have an option to **mine using their device**.

@@ -1,8 +1,4 @@
-# lottocoin   
-
-http://lottocoin.online/   For setup view bottom of README
-
-![image](https://challengepost-s3-challengepost.netdna-ssl.com/photos/production/software_photos/001/410/418/datas/original.png)
+<img src="https://challengepost-s3-challengepost.netdna-ssl.com/photos/production/software_photos/001/410/418/datas/original.png" width="400" style="text-align:center">
 
 ## Inspiration
 There is a **massive problem** in the cryptocurrency market that can totally destroy these coins and crash the markets, this problem is called the 51% attack. The 51% attack is when one entity or organisation has over 50% control of the hash rate (mining). If this happens then the **entity has total control** and can **alter the blockchain for extreme financial gain**. One way to prevent this is by deterring entities and organisations and increasing the amount of smaller miners with a lottery type mining system. The current mining system used rewards a certain amount of crypto every time a block is created. Our proposal is to **instead reward the miner with a ticket**, and the prize for mining gets added to a pool. Every X blocks mined a lottery takes place and whoever wins takes the whole pool, then the pool resets. Our thought is that large groups and companies do not try to buy extreme amounts of lottery tickets due to the **risk factor**, so this **risk factor would deter them from spending lots of money on computational power** and instead **favour smaller miners using their phones, laptops** etc as it is a lower risk for them. We create a web app and a **decentralized peer to peer network** for this crypto where a user can create an account, buy crypto and transfer it to other users. They also have an option to **mine using their device**.
@@ -31,36 +27,7 @@ https://www.investopedia.com/terms/b/blockchain.asp
 https://www.youtube.com/watch?v=malwhCwEosk&ab_channel=nang
 https://www.figma.com/file/Sgm8OTfCuTQxeHSNNmjTUi/Untitled?node-id=0%3A1
 
-steps to get it working!
-
-1. Delete the 'venv' folder
-
-now run the following commands:
-
-python3 -m venv venv
-
-virtualenv venv
-
-source venv/bin/activate
-
-pip install flask
-
-pip install pycryptodome
-
-pip install jsonpickle
-
-pip install flask_sqlalchemy
-
-pip install requests
-
-pip install flask_bcrypt
-
-pip install flask_login
-
-pip install flask_wtf
-
-pip install email_validator
-
-pip install expiringdict
-
-Now finally, to run it, do 'flask run'
+## Setup  
+- Create venv  
+- "pip install -r requirements.txt"
+- "flask run" 
